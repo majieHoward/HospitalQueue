@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest android:hardwareAccelerated="true" android:versionCode="10000" android:versionName="1.0.0" package="com.howard.hospital" xmlns:android="http://schemas.android.com/apk/res/android">
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
+    <!--权限-->
+    <!--android.permission. INTERNET	允许应用联网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--android.permission. ACCESS_NETWORK_STATE	获取当前网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--android.permission.READ_EXTERNAL_STORAGE	读外部存储-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--android.permission.WRITE_EXTERNAL_STORAGE	写外部存储-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--android.permission. WRITE_SETTINGS	允许程序读取或写入系统设置-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--android.permission.READ_PHONE_STATE	允许程序读取手机状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--android.permission. MODIFY_AUDIO_SETTINGS	允许程序修改全局声音设置权限-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!--android.permission. ACCESS_WIFI_STATE	允许应用程序获取WIFI状态-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--android.permission.CHANGE_WIFI_STATE	允许应用程序改变WI-FI网络链接状态的权限-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <application
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
+            <intent-filter android:label="@string/launcher_name">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
+</manifest>
