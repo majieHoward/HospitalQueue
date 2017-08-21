@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.howard.hospital" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <!--add by mayijie at 2017.08.18 添加百度语音合成插件-->
+    <feature name="bDTTSClientPlugin">
+        <param name="android-package" value="com.howard.www.plugin.BDTTSClientPlugin" />
+    </feature>
+    <!--add by mayijie at 2017.08.21 添加系统自带语音合成插件-->
+    <feature name="tTSClientPlugin">
+        <param name="android-package" value="com.howard.www.plugin.TTSClientPlugin" />
+    </feature>
+    <name>HospitalQueue</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="market:*" />
+    <!--add by mayijie at 2017.08.20 在Cordoval加载远程的URL网址-->
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <preference name="loglevel" value="DEBUG" />
+</widget>
