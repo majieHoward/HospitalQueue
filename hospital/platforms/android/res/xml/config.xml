@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.howard.hospital" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <!--
+    插件对象的一个​​实例是为每个人的生命创建的 WebView。插件不被实例化，
+    直到它们被JavaScript的调用首次引用为止，
+    除非<param>将onload name属性设置为"true"in config.xml。
+    -->
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
@@ -11,6 +16,15 @@
     <!--add by mayijie at 2017.08.21 添加系统自带语音合成插件-->
     <feature name="tTSClientPlugin">
         <param name="android-package" value="com.howard.www.plugin.TTSClientPlugin" />
+    </feature>
+    <!--add by mayijie at 2017.08.22 添加获取设备信息插件-->
+    <feature name="devicePlugin">
+        <param name="android-package" value="com.howard.www.plugin.DevicePlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <!--add by mayijie at 2017.08.22 获取设备的IP地址-->
+    <feature name="netWorkInterfacePlugin">
+        <param name="android-package" value="com.howard.www.plugin.NetWorkInterfacePlugin" />
     </feature>
     <name>HospitalQueue</name>
     <description>
