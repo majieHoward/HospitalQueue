@@ -15,7 +15,9 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +25,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Locale;
+
 /**
  * Created by mayijie on 2017/8/21.
  */
@@ -38,6 +41,14 @@ public class TTSClientPlugin extends CordovaPlugin implements OnInitListener, On
     private CallbackContext callbackContext;
 
     //private String startupCallbackId = "";
+    /**add bu mayijie at 2017.08.22**/
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        //插件应该使用该initialize方法来启动它们的逻辑
+        super.initialize(cordova, webView);
+        state = TTSClientPlugin.INITIALIZING;
+        mTts = new TextToSpeech(cordova.getActivity().getApplicationContext(), this);
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
@@ -193,45 +204,33 @@ public class TTSClientPlugin extends CordovaPlugin implements OnInitListener, On
      * @param status
      */
     public void onInit(int status) {
+        /**
+         *
+         * Denotes a successful operation.
+         *public static final int SUCCESS = 0;
+         * Denotes a generic operation failure.
+         *public static final int ERROR = -1;
+         *
+         * */
         if (status == TextToSpeech.SUCCESS) {
             state = TTSClientPlugin.STARTED;
             PluginResult result = new PluginResult(PluginResult.Status.OK, TTSClientPlugin.STARTED);
             result.setKeepCallback(false);
-            //this.success(result, this.startupCallbackId);
-	    this.startupCallbackContext.sendPluginResult(result);
+            /**Attempt to invoke virtual method
+             * 'void org.apache.cordova.CallbackContext.sendPluginResult(org.apache.cordova.PluginResult)'
+             * on a null object reference**/
+            if(this.startupCallbackContext!=null){
+                this.startupCallbackContext.sendPluginResult(result);
+            }
             mTts.setOnUtteranceCompletedListener(this);
-//            Putting this code in hear as a place holder. When everything moves to API level 15 or greater
-//            we'll switch over to this way of trackign progress.
-//            mTts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-//
-//                @Override
-//                public void onDone(String utteranceId) {
-//                    Log.d(LOG_TAG, "got completed utterance");
-//                    PluginResult result = new PluginResult(PluginResult.Status.OK);
-//                    result.setKeepCallback(false);
-//                    callbackContext.sendPluginResult(result);        
-//                }
-//
-//                @Override
-//                public void onError(String utteranceId) {
-//                    Log.d(LOG_TAG, "got utterance error");
-//                    PluginResult result = new PluginResult(PluginResult.Status.ERROR);
-//                    result.setKeepCallback(false);
-//                    callbackContext.sendPluginResult(result);        
-//                }
-//
-//                @Override
-//                public void onStart(String utteranceId) {
-//                    Log.d(LOG_TAG, "started talking");
-//                }
-//                
-//            });
         }
         else if (status == TextToSpeech.ERROR) {
             state = TTSClientPlugin.STOPPED;
             PluginResult result = new PluginResult(PluginResult.Status.ERROR, TTSClientPlugin.STOPPED);
             result.setKeepCallback(false);
-            this.startupCallbackContext.sendPluginResult(result);
+            if(this.startupCallbackContext!=null){
+                this.startupCallbackContext.sendPluginResult(result);
+            }
         }
     }
 
